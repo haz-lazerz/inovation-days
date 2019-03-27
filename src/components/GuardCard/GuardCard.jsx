@@ -6,7 +6,11 @@ import {
   CardSubtitle,
   Button,
   Col,
-  Row
+  Row,
+  Dropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem
 } from "reactstrap";
 import "./GuardCard.css";
 import AppSlider from "../AppSlider/AppSlider";
@@ -21,30 +25,47 @@ class GuardCard extends Component {
       "Excluded strings",
       "Force Strong Protected Strings",
       "Force Fast Protected Strings"
-    ]
+    ],
+    testStringArray: [
+      "string1",
+      "string2",
+      "string3",
+      "string4",
+      "string5",
+      "string6"
+    ],
+    dropDownOpen: false
   };
 
   handleClickExcludedStrings = (index, title) => {
-    console.log(
-      `button with index ${index} was clicked it has title of ${title} other button clicks wont render additional string`
-    );
     const strings = [...this.state.excludedStrings];
     strings.push(title);
     this.setState({ excludedStrings: strings });
   };
 
   handleClickStrongProtectedStrings = (index, title) => {
-    console.log(`strong protected button index ${index} and title ${title}`);
     const strings = [...this.state.strongProtectedStrings];
     strings.push(title);
     this.setState({ strongProtectedStrings: strings });
   };
 
   handleClickFastProtectedStrings = (index, title) => {
-    console.log(`fast protected button index ${index} and title ${title}`);
     const strings = [...this.state.fastProtectedStrings];
     strings.push(title);
     this.setState({ fastProtectedStrings: strings });
+  };
+
+  toggle = () => {
+    this.setState(prevState => ({
+      dropDownOpen: !prevState.dropDownOpen
+    }));
+  };
+
+  handleSelect = (index, string) => {
+    const selectedStrings = [...this.state.excludedStrings];
+    selectedStrings.push(string);
+    this.setState({ excludedStrings: selectedStrings });
+    console.log(this.state.excludedStrings);
   };
 
   render() {
@@ -62,6 +83,21 @@ class GuardCard extends Component {
               {this.state.excludedStrings.length ? (
                 <h4>Excluded strings:</h4>
               ) : null}
+              {
+                <Dropdown isOpen={this.state.dropDownOpen} toggle={this.toggle}>
+                  <DropdownToggle caret>Strings</DropdownToggle>
+                  <DropdownMenu>
+                    {this.state.testStringArray.map((string, index) => (
+                      <DropdownItem
+                        onClick={() => this.handleSelect(index, string)}
+                        key={index}
+                      >
+                        {string}
+                      </DropdownItem>
+                    ))}
+                  </DropdownMenu>
+                </Dropdown>
+              }
               {this.state.excludedStrings.map((string, index) => (
                 <p className="string-list" key={index}>
                   {string}
