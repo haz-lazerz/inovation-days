@@ -1,0 +1,33 @@
+.card {
+  border: 2px solid black;
+  width: 50%;
+  border-radius: 15px;
+}
+
+.card-title {
+  font-weight: bold;
+}
+
+.card-subtitle {
+  display: inline-block;
+  margin-right: 15px;
+}
+
+.guard-card-button {
+  width: 50px;
+  margin-left: 15px;
+  margin-bottom: 15px;
+  display: block;
+}
+
+p {
+  margin-bottom: 20px;
+}
+
+.string-list {
+  margin: 0;
+}
+
+h4 {
+  margin-top: 0.5rem;
+}
