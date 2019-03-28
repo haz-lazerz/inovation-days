@@ -21,12 +21,6 @@ class ConfigPage extends Component {
             protectionLevels={["Protection Level", "Obfuscation level"]}
           />
         </Row>
-        <Row className="justify-content-center mt-5">
-          <GuardCard
-            guardName={"Operator removal"}
-            protectionLevels={["Protection Level", "Obfuscation level"]}
-          />
-        </Row>
       </div>
     );
   }
